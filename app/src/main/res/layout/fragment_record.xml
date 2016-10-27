@@ -1,0 +1,443 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.tricker.recordmoney.RecordFragment">
+
+    <TextView
+        android:id="@+id/txtLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/location" />
+
+    <TableRow android:gravity="center">
+
+        <Spinner
+            android:id="@+id/editType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/type" />
+    </TableRow>
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:id="@+id/row1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/date"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="date">
+
+                    </EditText>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtMoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="@string/money"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editMoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="numberSigned|numberDecimal" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtProject"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/project"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editProject"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtPercent"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/percent"
+                        android:textSize="16sp" />
+
+                    <!-- <EditText
+                        android:id="@+id/editPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="none"
+                        android:digits="0123456789/" /> -->
+
+                    <Spinner
+                        android:id="@+id/editPercent"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:entries="@array/percent"
+                        android:spinnerMode="dropdown"
+
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtState"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/state"
+                        android:textSize="16sp" />
+
+
+                    <Spinner
+                        android:id="@+id/editState"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:entries="@array/state"
+                        android:spinnerMode="dropdown"
+
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/remark"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+
+                        />
+
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/marry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TableRow
+                    android:id="@+id/rowOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/name"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+
+                        >
+
+                    </EditText>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtMoney1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="@string/getMoney"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editMoney1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="numberSigned|numberDecimal" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtMoney2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/payMoney"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editMoney2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="numberSigned|numberDecimal" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowFour"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtState1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/state"
+                        android:textSize="16sp" />
+
+
+                    <Spinner
+                        android:id="@+id/editState1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:entries="@array/state"
+                        android:spinnerMode="dropdown"
+
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowFive"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtRemark1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/remark"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editRemark1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+
+                        />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/sale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TableRow
+                    android:id="@+id/row11"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtSaleDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/date"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editSaleDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:focusable="false">
+
+                    </EditText>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row22"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtWeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="星期："
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editWeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:enabled="false"
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row33"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtSaleType"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/type"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/editSaleType"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:entries="@array/saleType"
+                        android:spinnerMode="dropdown" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row44"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtSaleMoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/money"
+                        android:textSize="16sp" />
+
+
+                    <EditText
+                        android:id="@+id/editSaleMoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="numberSigned|numberDecimal" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row55"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/txtSaleRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="end"
+                        android:text="@string/remark"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editSaleRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+
+                        />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save" />
+        </TableLayout>
+
+    </ScrollView>
+
+</TableLayout>

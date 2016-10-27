@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_record"
+            android:icon="@drawable/ic_menu_camera"
+            android:checked="true"
+            android:checkable="true"
+            android:title="记录" />
+        <item
+            android:id="@+id/nav_query"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="查询" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="地图" />
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="天气" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
