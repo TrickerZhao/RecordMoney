@@ -4,19 +4,33 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.tricker.recordmoney.db.TrickerDB;
 import com.tricker.recordmoney.model.City;
 import com.tricker.recordmoney.model.County;
 import com.tricker.recordmoney.model.Province;
+import com.tricker.recordmoney.model.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import static android.content.ContentValues.TAG;
+import static com.tricker.recordmoney.R.id.temp1;
+import static com.tricker.recordmoney.R.id.temp2;
+import static com.tricker.recordmoney.R.menu.weather;
 
 /**
  * 天气工具类
  */
 public class Utility {
+	private static WeatherParser parser;
 	public synchronized static boolean handleProvincesResponse(TrickerDB db,String response){
 		if(!TextUtils.isEmpty(response)){
 			String[] allProvinces = response.split(",");
@@ -94,8 +108,7 @@ public class Utility {
 	}*/
 	public static void handleWeatherResponse(Context context, String response){
 		try {
-//			LogUtil.e("tricker", response);
-			JSONObject jsonObject = new JSONObject(response);
+			/*JSONObject jsonObject = new JSONObject(response);
 			JSONObject weahterInfo = jsonObject.getJSONObject("data");
 			JSONArray week = weahterInfo.getJSONArray("forecast");
 			JSONObject today = week.getJSONObject(0);
@@ -106,25 +119,38 @@ public class Utility {
 //			String weatherDesp = weahterInfo.getString("ganmao");
 			String weatherDesp = today.getString("type");
 //			String publishTime = weahterInfo.getString("ptime");
-			saveWeatherInfo(context,cityName,"",temp1,temp2,weatherDesp,"");
+			saveWeatherInfo(context,cityName,"",temp1,temp2,weatherDesp,"");*/
+
+			//xml格式
+			InputStream is = new ByteArrayInputStream(response.getBytes());
+			parser = new DomWeatherParser();  //SaxWeatherParser
+			Weather weather = parser.parse(is);  //解析输入流
+			saveWeatherInfo(context,weather);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 
 		}
 	}
-	private static void saveWeatherInfo(Context context, String cityName, String weatherCode, String temp1,
-										String temp2, String weatherDesp, String publishTime) {
+	private static void saveWeatherInfo(Context context,Weather weather) {
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日",Locale.CHINA);
 		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
 		editor.putBoolean("city_selected", true);
-		editor.putString("city_name", cityName);
-		editor.putString("weather_code", weatherCode);
-		editor.putString("temp1", temp1.substring(2));
-		editor.putString("temp2", temp2.substring(2));
-		editor.putString("weather_desp", weatherDesp);
-		editor.putString("publish_time", publishTime);
+		editor.putString("city_name", weather.getCity());
+		editor.putString("weather_code", weather.getCity());
+		editor.putString("temp1", weather.getForecasts().get(1).getLow().substring(2));
+		editor.putString("temp2", weather.getForecasts().get(1).getHigh().substring(2));
+		editor.putString("weather_desp", weather.getEnvironment().getSuggest());
+		editor.putString("publish_time", weather.getUpdateTime());
 		editor.putString("current_date", TrickerUtils.getSystemDate());
+		editor.putString("current_temp",weather.getTemprature()+"");
+		editor.putString("shidu",weather.getHumidity()+"");
+		editor.putString("current_temp",weather.getTemprature()+"℃");
+		editor.putString("sunrise","日出："+weather.getSunrise());
+		editor.putString("sunset","日落："+weather.getSunset());
+		editor.putString("aqi",weather.getEnvironment().getAqi()+"");
+		editor.putString("pm25",weather.getEnvironment().getPm25()+"");
+		editor.putString("quality",weather.getEnvironment().getQuality());
 		editor.commit();
 	}
 }

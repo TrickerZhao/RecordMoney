@@ -81,7 +81,7 @@ public class ChooseAreaActivity extends Activity {
 					String countyCode = countyList.get(position).getName();
 //					TrickerUtils.showToast(ChooseAreaActivity.this, countyCode);
 					Intent intent = new Intent(ChooseAreaActivity.this,WeatherActivity.class);
-					intent.putExtra("county_code", countyCode);
+					intent.putExtra("city_name", countyCode);
 					startActivity(intent);
 					finish();
 				}

@@ -27,7 +27,8 @@ import java.net.URLEncoder;
 
 public class WeatherActivity extends Activity implements OnClickListener {
 	private LinearLayout weatherInfoLayout;
-	private TextView cityNameText,publishText,weatherDespText,temp1Text,temp2Text,currentDateText;
+	private TextView cityNameText,publishText,weatherDespText,
+			tempText,temp1Text,temp2Text,currentDateText,txtSunrise,txtSunset;
 	private Button switchCity,refreshWeather;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,12 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_weather);
 		findViews();
-		String countyCode =getIntent().getStringExtra("county_code");
-		if(!TextUtils.isEmpty(countyCode)){
+		String city_name =getIntent().getStringExtra("city_name");
+		if(!TextUtils.isEmpty(city_name)){
 			publishText.setText("同步中。。。");
 			weatherInfoLayout.setVisibility(View.INVISIBLE);
 			cityNameText.setVisibility(View.INVISIBLE);
-			queryWeatherCode(countyCode);
+			queryWeatherCode(city_name);
 		}else{
 			showWeather();
 		}
@@ -51,11 +52,15 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	private void showWeather() {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		cityNameText.setText(prefs.getString("city_name", ""));
+		txtSunrise.setText(prefs.getString("sunrise", ""));
+		txtSunset.setText(prefs.getString("sunset", ""));
+		tempText.setText(prefs.getString("current_temp", ""));
 		temp1Text.setText(prefs.getString("temp1", ""));
 		temp2Text.setText(prefs.getString("temp2", ""));
 		weatherDespText.setText(prefs.getString("weather_desp", ""));
 		currentDateText.setText(prefs.getString("current_date", ""));
-		publishText.setText("今天"+prefs.getString("publish_time"+"发布", ""));
+		publishText.setText("更新于 "+prefs.getString("publish_time", ""));
+
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
 
@@ -68,8 +73,10 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String address="http://wthrcdn.etouch.cn/weather_mini?city="+countyCode;
 //		String address="http://www.weather.com.cn/data/list3/city"+countyCode+".xml";
+//		String address="http://wthrcdn.etouch.cn/weather_mini?city="+countyCode;
+		String address="http://wthrcdn.etouch.cn/WeatherApi?city="+countyCode;
+
 		queryFromServer(address,"countyCode");
 	}
 	private void queryFromServer(final String address, final String type) {
@@ -148,9 +155,12 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		cityNameText = (TextView) findViewById(R.id.city_name);
 		publishText = (TextView) findViewById(R.id.publish_text);
 		weatherDespText = (TextView) findViewById(R.id.weather_desp);
+		tempText = (TextView) findViewById(R.id.temp);
 		temp1Text = (TextView) findViewById(R.id.temp1);
 		temp2Text = (TextView) findViewById(R.id.temp2);
 		currentDateText = (TextView) findViewById(R.id.current_date);
+		txtSunrise = (TextView) findViewById(R.id.sunrise);
+		txtSunset = (TextView) findViewById(R.id.sunset);
 
 		switchCity = (Button) findViewById(R.id.switch_city);
 		refreshWeather = (Button) findViewById(R.id.refresh_weather);

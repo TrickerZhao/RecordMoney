@@ -50,7 +50,8 @@ public class AutoUpdateService extends Service {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String address="http://wthrcdn.etouch.cn/weather_mini?city="+cityCode;
+//		String address="http://wthrcdn.etouch.cn/weather_mini?city="+cityCode;
+		String address="http://wthrcdn.etouch.cn/WeatherApi?city="+cityCode;
 		HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
 			@Override
 			public void onFinish(String response) {
